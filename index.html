@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Usr records</h1>
+        <ul id = "userlist"></ul>
+
+        <script>
+            async function fetchUser(){
+                try{
+                    const response = await fetch('./users');
+                    const users = await responses.json();
+                    const userlist=document.getElementById('userList');
+                    userlist.innerHTML='';
+                    users.forEach((user) => {
+                        const listitem = document.createElement('li');
+                        listitem.textContent=`ID : ${user._id},Name:${user.name},department:${user.department},email:${user.email}`;
+                        userlist.appendChild(listitem);
+                        
+                    });
+                }catch(error){
+                    console.error('error fetching users',error);
+                }
+            }
+            fetchUser()
+        </script>
+    </body>
+</html>
